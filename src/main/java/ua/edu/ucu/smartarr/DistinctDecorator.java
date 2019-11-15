@@ -21,6 +21,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
                         newArr[j] = null;
                     }
                 } catch (NullPointerException ignored) {
+                    System.out.println("NullPointerException caught");
 
                 }
             }
@@ -29,9 +30,13 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     private boolean equals(Object ob1, Object ob2) {
         if (ob1 instanceof Student && ob2 instanceof Student) {
-            return ((Student) ob1).getName().equals(((Student) ob2).getName()) &&
-                    ((Student) ob1).getSurname().equals(((Student) ob2).getSurname()) &&
-                    ((Student) ob1).getGPA() == (((Student) ob2).getGPA()) &&
+            return ((Student) ob1).getName().equals(((Student) ob2).getName())
+                    &&
+                    ((Student) ob1).getSurname().equals((
+                            (Student) ob2).getSurname())
+                    &&
+                    ((Student) ob1).getGPA() - (((Student) ob2).getGPA()) < 0.000001
+                    &&
                     ((Student) ob1).getYear() == (((Student) ob2).getYear());
         } else {
             return ob1.equals(ob2);

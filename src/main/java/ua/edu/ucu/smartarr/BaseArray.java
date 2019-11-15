@@ -4,24 +4,25 @@ import java.util.Arrays;
 
 // Base array for decorators
 public class BaseArray implements SmartArray {
-    private Object[] arr;
+
+    private Object[] objects;
 
     public BaseArray(Object[] arr) {
-        this.arr = arr;
+        this.objects = arr;
     }
 
     @Override
     public Object[] toArray() {
         Object[] newarr = new Object[size()];
         int newSize = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != null) {
-                newarr[newSize] = arr[i];
+        for (int i = 0; i < objects.length; i++) {
+            if (objects[i] != null) {
+                newarr[newSize] = objects[i];
                 newSize += 1;
             }
         }
-        arr = Arrays.copyOf(newarr, newSize);
-        return arr;
+        objects = Arrays.copyOf(newarr, newSize);
+        return objects;
     }
 
     @Override
@@ -33,8 +34,8 @@ public class BaseArray implements SmartArray {
     public int size() {
 
         int realSize = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != null) {
+        for (int i = 0; i < objects.length; i++) {
+            if (objects[i] != null) {
                 realSize += 1;
             }
         }
