@@ -5,8 +5,6 @@ import ua.edu.ucu.Student;
 // Remove duplicates from SmartArray. Use method equals() to compare objects
 public class DistinctDecorator extends SmartArrayDecorator {
 
-    private final double ALPHA = 0.0000001;
-
 
     public DistinctDecorator(SmartArray smartArray) {
         super(smartArray);
@@ -33,6 +31,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     private boolean equals(Object ob1, Object ob2) {
         if (ob1 instanceof Student && ob2 instanceof Student) {
+            double ALPHA = 0.0000001;
             return ((Student) ob1).getName().equals(((Student) ob2).getName())
                     &&
                     ((Student) ob1).getSurname().equals((
