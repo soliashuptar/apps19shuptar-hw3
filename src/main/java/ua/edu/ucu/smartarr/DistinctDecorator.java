@@ -5,6 +5,9 @@ import ua.edu.ucu.Student;
 // Remove duplicates from SmartArray. Use method equals() to compare objects
 public class DistinctDecorator extends SmartArrayDecorator {
 
+    private final double ALPHA = 0.0000001;
+
+
     public DistinctDecorator(SmartArray smartArray) {
         super(smartArray);
         removeDuplicates();
@@ -35,7 +38,8 @@ public class DistinctDecorator extends SmartArrayDecorator {
                     ((Student) ob1).getSurname().equals((
                             (Student) ob2).getSurname())
                     &&
-                    ((Student) ob1).getGPA() - (((Student) ob2).getGPA()) < 0.000001
+                    ((Student) ob1).getGPA() - (((Student) ob2).getGPA())
+                            < ALPHA
                     &&
                     ((Student) ob1).getYear() == (((Student) ob2).getYear());
         } else {

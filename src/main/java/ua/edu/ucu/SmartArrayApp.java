@@ -58,20 +58,24 @@ public class SmartArrayApp {
     }
 
     public static String[]
-    findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+    findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(
+            Student[] students) {
 
         final int YEAR = 2;
         final int GPA = 4;
-        MyPredicate pr = t -> ((Student) t).getYear() == YEAR && ((Student) t).getGPA() >= GPA;
+        MyPredicate pr = t -> ((Student) t).getYear() ==
+                YEAR && ((Student) t).getGPA() >= GPA;
 
-        MyComparator cmp = (st1, st2) -> ((Student) st1).getSurname().compareTo(((Student) st2).getSurname());
+        MyComparator cmp = (st1, st2) -> ((Student) st1).getSurname()
+                .compareTo(((Student) st2).getSurname());
 
         SmartArray sa = new BaseArray(students);
 
         MyFunction func = new MyFunction() {
             @Override
             public Object apply(Object t) {
-                return ((Student) t).getSurname() + " " + ((Student) t).getName();
+                return ((Student) t).getSurname()
+                        + " " + ((Student) t).getName();
             }
         };
 
