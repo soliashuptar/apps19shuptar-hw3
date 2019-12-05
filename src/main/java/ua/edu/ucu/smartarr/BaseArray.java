@@ -42,4 +42,9 @@ public class BaseArray implements SmartArray {
 
         return realSize;
     }
+
+    public void setValue(int index) {
+        objects[index] = 0;
+
+    }
 }

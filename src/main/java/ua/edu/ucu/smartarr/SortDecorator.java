@@ -3,6 +3,7 @@ package ua.edu.ucu.smartarr;
 import ua.edu.ucu.functions.MyComparator;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 // Sorts elements using MyComparator to compare them
 public class SortDecorator extends SmartArrayDecorator {
@@ -12,17 +13,17 @@ public class SortDecorator extends SmartArrayDecorator {
     public SortDecorator(SmartArray smartArray, MyComparator cmp) {
         super(smartArray);
         this.cmp = cmp;
-        sort();
     }
 
-    private void sort() {
-        Object[] newArr = toArray();
-        Arrays.sort(newArr, cmp);
-    }
 
     @Override
     public Object[] toArray() {
-        return smartArray.toArray();
+
+        Stream<Object> arrayStream = Arrays.stream(smartArray.toArray());
+        Object[] array = arrayStream.sorted(cmp
+        ).toArray();
+
+        return Arrays.copyOf(array, array.length);
     }
 
     @Override

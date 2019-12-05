@@ -2,6 +2,9 @@ package ua.edu.ucu.smartarr;
 
 import ua.edu.ucu.functions.MyPredicate;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 // Tests every element and removes it if it doesn't satisfy MyPredicate
 public class FilterDecorator extends SmartArrayDecorator {
 
@@ -10,22 +13,15 @@ public class FilterDecorator extends SmartArrayDecorator {
     public FilterDecorator(SmartArray smartArray, MyPredicate pr) {
         super(smartArray);
         this.pr = pr;
-        filter();
-    }
-
-    private void filter() {
-        Object[] newArr = toArray();
-        for (int i = 0; i < newArr.length; i++) {
-            if (!pr.test(newArr[i])) {
-//                System.out.println(newArr[i]);
-                newArr[i] = null;
-            }
-        }
     }
 
     @Override
     public Object[] toArray() {
-        return smartArray.toArray();
+        Stream<Object> arrayStream = Arrays.stream(smartArray.toArray());
+        Object[] array = arrayStream.filter(obj -> pr.test(obj)).toArray();
+        System.out.println(Arrays.toString(array));
+
+        return Arrays.copyOf(array, array.length);
     }
 
     @Override
